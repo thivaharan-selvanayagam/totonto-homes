@@ -166,7 +166,7 @@ app.get('/featured', async (req, res) => {
 
   const data = await fetchListings(params);
   res.render('pages/featured', {
-    title: 'Featured Properties | Marco Esquivel Real Estate',
+    title: 'Featured Properties | Toronto Homes Real Estate',
     listings: data.listings || [],
     numPages: data.numPages || 0,
     count: data.count || 0,
