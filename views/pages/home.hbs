@@ -1,0 +1,279 @@
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=85')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 0L10 6H16L11 9.5L13 16L8 12L3 16L5 9.5L0 6H6L8 0Z" fill="#c9a96e"/></svg>
+          Real Estate Services in Placer County
+        </div>
+        <h1>Discover<br><em>Luxury Living</em></h1>
+        <p>Find your perfect home in Placer County and throughout Toronto with Toronto Homes, your trusted real estate professional.</p>
+      </div>
+
+      <div class="hero-search">
+        <div class="search-tabs">
+          <button class="search-tab active" data-tab="buy">Buy</button>
+          <button class="search-tab" data-tab="sell">Sell</button>
+          <button class="search-tab" data-tab="rent">Rent</button>
+        </div>
+        <form class="search-form" action="/listings" method="GET">
+          <div class="search-input-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" name="search" id="heroSearch" placeholder="Search by city, neighborhood, or address..." autocomplete="off" />
+            <div class="search-autocomplete" id="heroAutocomplete"></div>
+          </div>
+          <div class="search-filters-row">
+            <select name="type" class="filter-select">
+              <option value="">Property Type</option>
+              <option value="detached">Detached</option>
+              <option value="semi-detached">Semi-Detached</option>
+              <option value="condo">Condo</option>
+              <option value="townhouse">Townhouse</option>
+            </select>
+            <select name="beds" class="filter-select">
+              <option value="">Bedrooms</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+            <select name="minPrice" class="filter-select">
+              <option value="">Min Price</option>
+              <option value="200000">$200K</option>
+              <option value="400000">$400K</option>
+              <option value="600000">$600K</option>
+              <option value="800000">$800K</option>
+              <option value="1000000">$1M</option>
+            </select>
+            <select name="maxPrice" class="filter-select">
+              <option value="">Max Price</option>
+              <option value="400000">$400K</option>
+              <option value="600000">$600K</option>
+              <option value="800000">$800K</option>
+              <option value="1000000">$1M</option>
+              <option value="2000000">$2M+</option>
+            </select>
+            <button type="submit" class="search-btn">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><strong>500+</strong><span>Homes Sold</span></div>
+        <div class="stat"><strong>20+</strong><span>Years Experience</span></div>
+        <div class="stat"><strong>$250M+</strong><span>In Transactions</span></div>
+        <div class="stat"><strong>98%</strong><span>Client Satisfaction</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEIGHBORHOODS -->
+<section class="section neighborhoods-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">Explore Communities</div>
+      <h2>Neighborhoods</h2>
+      <p>We are deeply committed to finding the perfect neighborhood for you. Discover stunning places that Toronto Homes is finding neighborhoods for you.</p>
+    </div>
+    <div class="neighborhoods-grid">
+      <a href="/neighborhoods/Ottawa" class="neighborhood-card large">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80')"></div>
+        <div class="neighborhood-info">
+          <h3>Ottawa</h3>
+          <span class="read-more">Read more <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="/neighborhoods/Mississauga" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Mississauga</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/Toronto" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Toronto</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/Oakville" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Oakville</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/London" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>London</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/Windsor" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Windsor</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/Hamilton" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Hamilton</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/Chinatown" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>Chinatown</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+      <a href="/neighborhoods/High Park" class="neighborhood-card">
+        <div class="neighborhood-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80')"></div>
+        <div class="neighborhood-info"><h3>High Park</h3><span class="read-more">Read more <i class="fas fa-arrow-right"></i></span></div>
+      </a>
+    </div>
+    <div class="section-cta">
+      <a href="/neighborhoods" class="btn btn-outline">View All Neighborhoods</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PORTFOLIO -->
+<section class="section portfolio-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">Properties</div>
+      <h2>My Portfolio</h2>
+    </div>
+
+    <div class="portfolio-filters">
+      <div class="filter-row">
+        <input type="text" id="portfolioSearch" placeholder="Search by address..." class="filter-input" />
+        <select id="portfolioSort" class="filter-select-sm">
+          <option value="createdOnDesc">Newest</option>
+          <option value="listPriceDesc">Price (High→Low)</option>
+          <option value="listPriceAsc">Price (Low→High)</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <select id="portfolioBeds" class="filter-select-sm"><option value="">Beds</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select>
+        <select id="portfolioMinPrice" class="filter-select-sm"><option value="">Min Price</option><option value="200000">$200K</option><option value="500000">$500K</option><option value="800000">$800K</option><option value="1000000">$1M</option></select>
+        <select id="portfolioMaxPrice" class="filter-select-sm"><option value="">Max Price</option><option value="500000">$500K</option><option value="800000">$800K</option><option value="1000000">$1M</option><option value="2000000">$2M+</option></select>
+        <select id="portfolioStatus" class="filter-select-sm"><option value="A">Active</option><option value="U">Sold</option></select>
+      </div>
+    </div>
+
+    <div class="listings-grid" id="portfolioGrid">
+      {{#each featuredListings}}
+        {{> listing-card}}
+      {{else}}
+        <div class="no-listings">
+          <i class="fas fa-home"></i>
+          <p>Loading properties from Repliers API...</p>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="section-cta">
+      <a href="/listings" class="btn btn-primary">View All Listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SPLIT SECTION -->
+<section class="section cta-split">
+  <div class="container">
+    <div class="cta-split-grid">
+      <div class="cta-card cta-buy">
+        <div class="cta-icon"><i class="fas fa-home"></i></div>
+        <h3>Find Your Dream Home</h3>
+        <p>Toronto Homeses is standing by to help you find the home of your dreams. Tell us what you're looking for and we'll help find the perfect listing.</p>
+        <a href="/listings" class="btn btn-primary">View Search</a>
+      </div>
+      <div class="cta-card cta-sell">
+        <div class="cta-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>What's Your Home Worth?</h3>
+        <p>Toronto Homeses is ready to help and discuss any questions or concerns you might have. Find out how much your home could sell for in today's market.</p>
+        <a href="/sell" class="btn btn-gold">Home Valuation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT Toronto Homeses -->
+<section class="section about-preview">
+  <div class="container">
+    <div class="about-preview-grid">
+      <div class="about-preview-image">
+        <div class="image-frame">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80" alt="Toronto Homes" loading="lazy" />
+        </div>
+        <div class="watermark-name">Toronto Homes</div>
+      </div>
+      <div class="about-preview-content">
+        <div class="section-eyebrow">About Me</div>
+        <h2>Meet John</h2>
+        <p class="about-subtitle"><em>Real Estate Professional</em></p>
+        <p>John has been helping with real estate for the past 20 years of his life. He has lived in Toronto and is an expert in markets, specializing in residential, commercial, and investment property throughout Toronto. He is well-experienced in Property Management for those who need it and has years of experience working as a Transaction Coordinator. Toronto Homeses has sold over $250 million sales volume.</p>
+        <a href="/about" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS PREVIEW -->
+<section class="section testimonials-preview">
+  <div class="container">
+    <div class="testimonial-slider" id="testimonialSlider">
+      <div class="testimonial-slide active">
+        <blockquote>
+          "For anyone who wants to either sell or purchase a home, I highly recommend Toronto Homeses for all your real estate needs. He is always available to answer any questions or concerns you might have."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <strong>Marc E.</strong>
+            <span>Verified Client</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>
+          "Toronto Homes made our home buying process seamless and stress-free. His knowledge of the Placer County market is unmatched. We found our dream home within 30 days!"
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info"><strong>Sarah & Tom K.</strong><span>Rocklin, CA</span></div>
+        </div>
+      </div>
+      <div class="testimonial-slide">
+        <blockquote>
+          "Working with Toronto Homes was the best decision we made. He got us $50,000 over asking price in just 5 days on market. Truly exceptional service."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info"><strong>Roberto V.</strong><span>Auburn, CA</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button class="t-prev" onclick="changeTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="t-dots" id="tDots">
+        <span class="t-dot active"></span>
+        <span class="t-dot"></span>
+        <span class="t-dot"></span>
+      </div>
+      <button class="t-next" onclick="changeTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="section-cta" style="margin-top: 2rem;">
+      <a href="/testimonials" class="btn btn-outline-light">View All Reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- WORK WITH Toronto Homes -->
+<section class="section work-with-marco">
+  <div class="work-marco-bg" style="background-image: url('https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=1400&q=80')">
+    <div class="work-marco-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="work-marco-content">
+      <h2>Work With Toronto Homes</h2>
+      <p>Find and lease the home of your dreams! I am dedicated to providing you with the highest level of service and expertise in the real estate market.</p>
+      <a href="/contact" class="btn btn-gold">Get In Touch</a>
+    </div>
+  </div>
+</section>

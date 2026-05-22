@@ -1,0 +1,118 @@
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> Sell a Home</div>
+      <h1>Sell Your Home</h1>
+      <p>Get maximum value for your property with John's proven selling strategy</p>
+    </div>
+  </div>
+</section>
+
+<section class="section sell-intro">
+  <div class="container">
+    <div class="sell-intro-grid">
+      <div class="sell-intro-content">
+        <div class="section-eyebrow">Seller Services</div>
+        <h2>Selling Your Home Has Never Been Easier</h2>
+        <p>Toronto Homes has helped hundreds of toronto homeowners sell their properties for top dollar. With a proven marketing strategy, extensive network, and deep market knowledge, John delivers results that exceed expectations.</p>
+        <div class="sell-highlights">
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>Average sale in 21 days or less</span></div>
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>Professional photography & staging consultation</span></div>
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>MLS & major portal syndication</span></div>
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>Digital marketing on social media</span></div>
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>Open house coordination</span></div>
+          <div class="sell-highlight"><i class="fas fa-check-circle"></i><span>Full transaction management</span></div>
+        </div>
+      </div>
+      <div class="sell-form-col">
+        <div class="sell-form-card">
+          <h3>Get a Free Home Valuation</h3>
+          <p>Find out what your home is worth in today's market.</p>
+          <form id="valuationForm">
+            <input type="text" name="address" placeholder="Property Address" required />
+            <input type="text" name="city" placeholder="City" required />
+            <input type="text" name="zip" placeholder="ZIP Code" required />
+            <select name="propertyType">
+              <option value="">Property Type</option>
+              <option value="single-family">Single Family</option>
+              <option value="condo">Condo/Townhouse</option>
+              <option value="multi-family">Multi-Family</option>
+              <option value="land">Land</option>
+            </select>
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="tel" name="phone" placeholder="Phone Number" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <button type="submit" class="btn btn-primary btn-full">Get My Free Valuation</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section selling-process bg-light">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">The Process</div>
+      <h2>How Toronto Homes Sells Your Home</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><h3>Free Consultation</h3><p>We meet to discuss your goals, timeline, and pricing strategy based on current market data.</p></div>
+      <div class="process-step"><div class="step-num">02</div><h3>Prepare & Stage</h3><p>We'll advise on improvements and staging to maximize your home's appeal and value.</p></div>
+      <div class="process-step"><div class="step-num">03</div><h3>Professional Marketing</h3><p>Professional photos, MLS listing, social media campaigns, and targeted digital advertising.</p></div>
+      <div class="process-step"><div class="step-num">04</div><h3>Showings & Offers</h3><p>We coordinate showings, collect offers, and negotiate the best terms on your behalf.</p></div>
+      <div class="process-step"><div class="step-num">05</div><h3>Close & Celebrate</h3><p>We guide you through escrow, inspections, and all closing documents for a smooth sale.</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('valuationForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.innerHTML = '<div class="form-success"><i class="fas fa-check-circle"></i><h3>Thank you!</h3><p>John will contact you within 24 hours with your free home valuation.</p></div>';
+});
+</script>
+
+<section class="section mortgage-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">Planning Tools</div>
+      <h2>Mortgage Calculator</h2>
+      <p>Estimate your monthly payment based on purchase price, down payment, and interest rate.</p>
+    </div>
+    <div class="mortgage-calc-wrap">
+      <div class="calculator-card">
+        <div class="calc-inputs" id="mortgageCalc">
+          <div class="form-group">
+            <label>Home Price ($)</label>
+            <input type="number" id="calcPrice" placeholder="600000" value="600000" />
+          </div>
+          <div class="form-group">
+            <label>Down Payment (%)</label>
+            <input type="number" id="calcDown" placeholder="20" value="20" min="0" max="100" />
+          </div>
+          <div class="form-group">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="calcRate" placeholder="6.75" value="6.75" step="0.01" />
+          </div>
+          <div class="form-group">
+            <label>Loan Term</label>
+            <select id="calcTerm">
+              <option value="30" selected>30 Years</option>
+              <option value="20">20 Years</option>
+              <option value="15">15 Years</option>
+              <option value="10">10 Years</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result" id="calcResult">
+          <div class="monthly">$3,107/mo</div>
+          <div class="monthly-label">Estimated Monthly Payment</div>
+        </div>
+        <p style="font-size:0.75rem;color:#999;margin-top:12px;text-align:center;">* Estimate only. Does not include taxes, insurance, or HOA fees. Contact Toronto Homes for a full pre-approval.</p>
+      </div>
+    </div>
+  </div>
+</section>

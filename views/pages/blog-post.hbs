@@ -1,0 +1,76 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('{{post.image}}')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="/">Home</a><span>/</span>
+        <a href="/blog">Blog</a><span>/</span>
+        <span>{{post.title}}</span>
+      </div>
+      <span class="blog-hero-category">{{post.category}}</span>
+      <h1>{{post.title}}</h1>
+      <div class="blog-hero-meta">
+        <span><i class="fas fa-calendar"></i> {{post.date}}</span>
+        <span><i class="fas fa-clock"></i> {{post.readTime}}</span>
+        <span><i class="fas fa-user"></i> Toronto Homes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-post-section">
+  <div class="container">
+    <div class="blog-post-grid">
+      <article class="blog-post-content">
+        {{{post.content}}}
+
+        <div class="blog-post-tags">
+          <span class="tag">{{post.category}}</span>
+          <span class="tag">Toronto Real Estate</span>
+          <span class="tag">Placer County</span>
+        </div>
+
+        <div class="blog-post-share">
+          <span>Share this article:</span>
+          <button onclick="navigator.clipboard.writeText(window.location.href).then(()=>alert('Link copied!'))" class="share-btn-sm"><i class="fas fa-link"></i> Copy Link</button>
+          <a href="mailto:?subject={{post.title}}&body={{post.excerpt}}" class="share-btn-sm"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+      </article>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-card">
+          <div class="agent-profile">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Toronto Homes" class="agent-photo" />
+            <div>
+              <h3>Toronto Homes</h3>
+              <p>Real Estate Professional</p>
+            </div>
+          </div>
+          <p style="font-size:0.88rem;color:#666;margin-bottom:16px;">Have questions about buying or selling? Toronto Homes is here to help.</p>
+          <a href="/contact" class="btn btn-primary btn-full">Get In Touch</a>
+        </div>
+
+        <div class="sidebar-card">
+          <h4 style="margin-bottom:16px;">Recent Posts</h4>
+          {{#each recentPosts}}
+          <a href="/blog/{{slug}}" class="recent-post-item">
+            <div class="rp-image" style="background-image:url('{{image}}')"></div>
+            <div class="rp-info">
+              <p>{{title}}</p>
+              <span>{{date}}</span>
+            </div>
+          </a>
+          {{/each}}
+        </div>
+
+        <div class="sidebar-card cta-sidebar-card">
+          <h4>Ready to Buy or Sell?</h4>
+          <p>Toronto Homes is standing by to help you with all your real estate needs in Canada.</p>
+          <a href="/listings" class="btn btn-outline btn-full" style="margin-bottom:10px;">Browse Listings</a>
+          <a href="/sell" class="btn btn-gold btn-full">Get Home Value</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

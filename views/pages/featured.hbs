@@ -1,0 +1,80 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> Featured Properties</div>
+      <h1>Featured Properties</h1>
+      <p>Hand-selected premium listings across Canada</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Advanced Filter Bar -->
+    <div class="filters-bar featured-filters">
+      <form action="/featured" method="GET">
+        <div class="featured-filter-row">
+          <div class="price-range-group">
+            <label>Price Range</label>
+            <div class="price-inputs">
+              <input type="number" name="minPrice" value="{{filters.minPrice}}" placeholder="Min $" class="price-input" />
+              <span>—</span>
+              <input type="number" name="maxPrice" value="{{filters.maxPrice}}" placeholder="Max $" class="price-input" />
+            </div>
+          </div>
+          <div class="filter-group">
+            <label>Beds</label>
+            <select name="beds" class="filter-select">
+              <option value="">Any</option>
+              <option value="2" {{#eq filters.beds '2'}}selected{{/eq}}>2+</option>
+              <option value="3" {{#eq filters.beds '3'}}selected{{/eq}}>3+</option>
+              <option value="4" {{#eq filters.beds '4'}}selected{{/eq}}>4+</option>
+              <option value="5" {{#eq filters.beds '5'}}selected{{/eq}}>5+</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Property Type</label>
+            <select name="type" class="filter-select">
+              <option value="">Any</option>
+              <option value="detached" {{#eq filters.type 'detached'}}selected{{/eq}}>Detached</option>
+              <option value="condo" {{#eq filters.type 'condo'}}selected{{/eq}}>Condo</option>
+              <option value="townhouse" {{#eq filters.type 'townhouse'}}selected{{/eq}}>Townhouse</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply Filters</button>
+            <a href="/featured" class="btn btn-ghost">Reset</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="results-header">
+      <p class="results-count"><strong>{{count}}</strong> featured properties found</p>
+    </div>
+
+    <div class="listings-grid listings-grid-4">
+      {{#each listings}}
+        {{> listing-card}}
+      {{else}}
+        <div class="no-listings col-span-4">
+          <i class="fas fa-home"></i>
+          <h3>No featured properties found</h3>
+          <p><a href="/featured">Clear filters</a> to see all properties.</p>
+        </div>
+      {{/each}}
+    </div>
+
+    {{#if numPages}}
+    <div class="pagination">
+      {{#if (add currentPage -1)}}
+      <a href="/featured?page={{add currentPage -1}}" class="page-btn"><i class="fas fa-chevron-left"></i></a>
+      {{/if}}
+      <span class="page-info">Page {{currentPage}} of {{numPages}}</span>
+      <a href="/featured?page={{add currentPage 1}}" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    {{/if}}
+  </div>
+</section>

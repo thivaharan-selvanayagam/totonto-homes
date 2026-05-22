@@ -1,0 +1,35 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> Neighborhoods</div>
+      <h1>Neighborhoods</h1>
+      <p>Explore Toronto's finest communities</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-eyebrow">Explore</div>
+      <h2>Find Your Community</h2>
+      <p>John has extensive knowledge of neighborhoods across Toronto. Find the community that's right for you.</p>
+    </div>
+    <div class="neighborhoods-full-grid">
+      {{#each neighborhoods}}
+      <a href="/neighborhoods/{{slug}}" class="neighborhood-full-card">
+        <div class="nf-image" style="background-image: url('{{image}}')">
+          <div class="nf-overlay"></div>
+        </div>
+        <div class="nf-content">
+          <h3>{{name}}</h3>
+          <p>{{description}}</p>
+          <span class="nf-cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>

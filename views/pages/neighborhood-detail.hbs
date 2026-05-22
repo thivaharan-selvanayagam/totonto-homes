@@ -1,0 +1,31 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> <a href="/neighborhoods">Neighborhoods</a> <span>/</span> {{city}}</div>
+      <h1>{{city}}</h1>
+      <p>Real estate in {{city}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Available Properties in {{city}}</h2>
+    <div class="listings-grid">
+      {{#each listings}}
+        {{> listing-card}}
+      {{else}}
+        <div class="no-listings col-span-3">
+          <i class="fas fa-search"></i>
+          <h3>No current listings in {{city}}</h3>
+          <p><a href="/listings">Browse all listings</a> or <a href="/contact">contact Toronto Homes</a> for off-market properties.</p>
+        </div>
+      {{/each}}
+    </div>
+    {{#if listings.length}}
+    <div class="section-cta"><a href="/listings?search={{city}}" class="btn btn-outline">See All {{city}} Listings</a></div>
+    {{/if}}
+  </div>
+</section>

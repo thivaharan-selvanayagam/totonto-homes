@@ -1,0 +1,197 @@
+<section class="listing-detail">
+  <div class="listing-gallery">
+    {{#if listing.images}}
+    <div class="gallery-main" id="galleryMain" style="background-image: url('https://cdn.repliers.io/{{listing.images.[0]}}')"></div>
+    <div class="gallery-thumbs" id="galleryThumbs">
+      {{#each listing.images}}
+      {{#if @index}}
+      {{#if (add @index -6)}}{{else}}
+      <div class="gallery-thumb {{#eq @index 1}}active{{/eq}}" style="background-image: url('https://cdn.repliers.io/{{this}}')" onclick="setGalleryImage('https://cdn.repliers.io/{{this}}', this)"></div>
+      {{/if}}
+      {{/if}}
+      {{/each}}
+      {{#if listing.images.length}}
+      <div class="gallery-count-btn" onclick="openLightbox()">
+        <i class="fas fa-images"></i> +{{listing.images.length}} Photos
+      </div>
+      {{/if}}
+    </div>
+    {{else}}
+    <div class="gallery-main" style="background-image: url('/images/placeholder.jpg')"></div>
+    {{/if}}
+  </div>
+
+  <div class="container">
+    <div class="listing-detail-grid">
+      <!-- Main Content -->
+      <div class="listing-main">
+        <div class="listing-breadcrumb">
+          <a href="/">Home</a> <span>/</span>
+          <a href="/listings">Listings</a> <span>/</span>
+          <span>{{listing.address.streetNumber}} {{listing.address.streetName}}</span>
+        </div>
+
+        <div class="listing-header">
+          <div class="listing-price-status">
+            <span class="listing-price">{{formatPrice listing.listPrice}}</span>
+            <span class="listing-status status-{{statusBadge listing.status}}">{{statusLabel listing.status}}</span>
+          </div>
+          <h1>{{listing.address.streetNumber}} {{listing.address.streetName}} {{listing.address.streetSuffix}}{{#if listing.address.unitNumber}}, Unit {{listing.address.unitNumber}}{{/if}}</h1>
+          <p class="listing-city"><i class="fas fa-map-marker-alt"></i> {{listing.address.city}}, {{listing.address.state}} {{listing.address.zip}}</p>
+        </div>
+
+        <div class="listing-key-facts">
+          {{#if listing.details.numBedrooms}}<div class="key-fact"><i class="fas fa-bed"></i><strong>{{listing.details.numBedrooms}}{{#if listing.details.numBedroomsPlus}}+{{listing.details.numBedroomsPlus}}{{/if}}</strong><span>Bedrooms</span></div>{{/if}}
+          {{#if listing.details.numBathrooms}}<div class="key-fact"><i class="fas fa-bath"></i><strong>{{listing.details.numBathrooms}}{{#if listing.details.numBathroomsPlus}}+{{listing.details.numBathroomsPlus}}{{/if}}</strong><span>Bathrooms</span></div>{{/if}}
+          {{#if listing.details.sqft}}<div class="key-fact"><i class="fas fa-ruler-combined"></i><strong>{{listing.details.sqft}}</strong><span>Sq Ft</span></div>{{/if}}
+          {{#if listing.details.numGarageSpaces}}<div class="key-fact"><i class="fas fa-car"></i><strong>{{listing.details.numGarageSpaces}}</strong><span>Garage</span></div>{{/if}}
+          {{#if listing.details.yearBuilt}}<div class="key-fact"><i class="fas fa-calendar"></i><strong>{{listing.details.yearBuilt}}</strong><span>Year Built</span></div>{{/if}}
+          {{#if listing.daysOnMarket}}<div class="key-fact"><i class="fas fa-clock"></i><strong>{{listing.daysOnMarket}}</strong><span>Days on Market</span></div>{{/if}}
+        </div>
+
+        {{#if listing.details.description}}
+        <div class="listing-section">
+          <h2>About This Property</h2>
+          <div class="listing-description" id="listingDesc">
+            <p>{{listing.details.description}}</p>
+          </div>
+        </div>
+        {{/if}}
+
+        <div class="listing-section">
+          <h2>Property Details</h2>
+          <div class="detail-grid">
+            {{#if listing.details.propertyType}}<div class="detail-item"><span>Property Type</span><strong>{{listing.details.propertyType}}</strong></div>{{/if}}
+            {{#if listing.details.style}}<div class="detail-item"><span>Style</span><strong>{{listing.details.style}}</strong></div>{{/if}}
+            {{#if listing.details.heating}}<div class="detail-item"><span>Heating</span><strong>{{listing.details.heating}}</strong></div>{{/if}}
+            {{#if listing.details.airConditioning}}<div class="detail-item"><span>Cooling</span><strong>{{listing.details.airConditioning}}</strong></div>{{/if}}
+            {{#if listing.details.basement1}}<div class="detail-item"><span>Basement</span><strong>{{listing.details.basement1}}</strong></div>{{/if}}
+            {{#if listing.details.driveway}}<div class="detail-item"><span>Driveway</span><strong>{{listing.details.driveway}}</strong></div>{{/if}}
+            {{#if listing.details.swimmingPool}}<div class="detail-item"><span>Pool</span><strong>{{listing.details.swimmingPool}}</strong></div>{{/if}}
+            {{#if listing.taxes.annualAmount}}<div class="detail-item"><span>Annual Tax</span><strong>${{listing.taxes.annualAmount}}</strong></div>{{/if}}
+            {{#if listing.mlsNumber}}<div class="detail-item"><span>MLS #</span><strong>{{listing.mlsNumber}}</strong></div>{{/if}}
+            {{#if listing.boardId}}<div class="detail-item"><span>Board ID</span><strong>{{listing.boardId}}</strong></div>{{/if}}
+          </div>
+        </div>
+
+        {{#if listing.details.extras}}
+        <div class="listing-section">
+          <h2>Extras & Features</h2>
+          <p>{{listing.details.extras}}</p>
+        </div>
+        {{/if}}
+
+        <div class="listing-section">
+          <h2>Location</h2>
+          <div class="map-placeholder" id="listingMap">
+            <div class="map-inner">
+              <i class="fas fa-map-marker-alt"></i>
+              <p>{{listing.address.streetNumber}} {{listing.address.streetName}}, {{listing.address.city}}</p>
+              <a href="https://maps.google.com/?q={{listing.address.streetNumber}}+{{listing.address.streetName}}+{{listing.address.city}}+{{listing.address.state}}" target="_blank" class="btn btn-outline btn-sm">Open in Google Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="listing-sidebar">
+        <div class="sidebar-card contact-card">
+          <div class="agent-profile">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Marco Esquivel" class="agent-photo" />
+            <div>
+              <h3>Toronto Homes</h3>
+              <p>Real Estate Professional</p>
+              <p class="agent-brokerage">VTO Group</p>
+            </div>
+          </div>
+          <form class="contact-form" id="listingContactForm">
+            <input type="hidden" name="listing" value="{{listing.mlsNumber}}" />
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Phone Number" />
+            <textarea name="message" rows="4" placeholder="I'm interested in this property...">I'm interested in {{listing.address.streetNumber}} {{listing.address.streetName}}. Please contact me.</textarea>
+            <button type="submit" class="btn btn-primary btn-full">
+              <i class="fas fa-paper-plane"></i> Request Info
+            </button>
+          </form>
+          <div class="contact-direct">
+            <a href="tel:+15551234567" class="btn btn-outline btn-full"><i class="fas fa-phone"></i> (555) 123-4567</a>
+          </div>
+        </div>
+
+        <div class="sidebar-card share-card">
+          <h4>Share This Listing</h4>
+          <div class="share-buttons">
+            <button onclick="shareLink()" class="share-btn"><i class="fas fa-link"></i> Copy Link</button>
+            <a href="mailto:?subject=Check out this property&body=https://contact@torontohomes.com/listings/{{listing.mlsNumber}}" class="share-btn"><i class="fas fa-envelope"></i> Email</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Similar Listings -->
+  {{#if similarListings.length}}
+  <section class="section similar-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Similar Properties</h2>
+      </div>
+      <div class="listings-grid listings-grid-3">
+        {{#each similarListings}}
+          {{> listing-card}}
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  {{/if}}
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close"><i class="fas fa-times"></i></button>
+  <div class="lightbox-track" id="lightboxTrack"></div>
+  <button class="lightbox-prev" onclick="event.stopPropagation();lightboxNav(-1)"><i class="fas fa-chevron-left"></i></button>
+  <button class="lightbox-next" onclick="event.stopPropagation();lightboxNav(1)"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+const allImages = {{{json listing.images}}};
+let lightboxIndex = 0;
+
+function setGalleryImage(url, el) {
+  document.getElementById('galleryMain').style.backgroundImage = `url('${url}')`;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function openLightbox() {
+  const lb = document.getElementById('lightbox');
+  const track = document.getElementById('lightboxTrack');
+  track.innerHTML = allImages.map((img, i) =>
+    `<div class="lb-slide" data-index="${i}" style="background-image:url('https://cdn.repliers.io/${img}')"></div>`
+  ).join('');
+  lb.classList.add('active');
+  lightboxNav(0);
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+function lightboxNav(dir) {
+  lightboxIndex = Math.max(0, Math.min(allImages.length - 1, lightboxIndex + dir));
+  document.querySelectorAll('.lb-slide').forEach((s, i) => {
+    s.classList.toggle('active', i === lightboxIndex);
+  });
+}
+
+function shareLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied!'));
+}
+
+document.getElementById('listingContactForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.innerHTML = '<div class="form-success"><i class="fas fa-check-circle"></i><p>Thank you! Toronto Homes will be in touch shortly.</p></div>';
+});
+</script>

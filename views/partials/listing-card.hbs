@@ -1,0 +1,41 @@
+<article class="listing-card">
+  <a href="/listings/{{mlsNumber}}" class="card-image-wrap">
+    <div class="card-image" style="background-image: url('{{firstImage images}}')">
+      <div class="card-badges">
+        <span class="badge badge-{{statusBadge status}}">{{statusLabel status}}</span>
+        {{#if details.numBedrooms}}
+        {{/if}}
+      </div>
+      <div class="card-overlay">
+        <span class="view-btn">View Details</span>
+      </div>
+    </div>
+  </a>
+  <div class="card-body">
+    <div class="card-price">{{formatPrice listPrice}}</div>
+    <h3 class="card-address">
+      <a href="/listings/{{mlsNumber}}">
+        {{address.streetNumber}} {{address.streetName}} {{address.streetSuffix}}
+        {{#if address.unitNumber}}, #{{address.unitNumber}}{{/if}}
+      </a>
+    </h3>
+    <p class="card-location"><i class="fas fa-map-marker-alt"></i> {{address.city}}, {{address.state}} {{address.zip}}</p>
+    <div class="card-features">
+      {{#if details.numBedrooms}}
+      <span><i class="fas fa-bed"></i> {{details.numBedrooms}} {{#if details.numBedroomsPlus}}+{{details.numBedroomsPlus}}{{/if}} Beds</span>
+      {{/if}}
+      {{#if details.numBathrooms}}
+      <span><i class="fas fa-bath"></i> {{details.numBathrooms}} {{#if details.numBathroomsPlus}}+{{details.numBathroomsPlus}}{{/if}} Baths</span>
+      {{/if}}
+      {{#if details.sqft}}
+      <span><i class="fas fa-ruler-combined"></i> {{details.sqft}} sqft</span>
+      {{/if}}
+    </div>
+    {{#if details.propertyType}}
+    <div class="card-type-row">
+      <span class="card-type">{{details.propertyType}}</span>
+      <span class="card-mls">MLS# {{mlsNumber}}</span>
+    </div>
+    {{/if}}
+  </div>
+</article>

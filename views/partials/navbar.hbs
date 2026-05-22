@@ -1,0 +1,53 @@
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <div class="header-top-bar">
+      <div class="container">
+        <div class="top-bar-content">
+          <div class="top-bar-left">
+            <a href="tel:+15551234567"><i class="fas fa-phone"></i> (555) 123-4567</a>
+            <a href="mailto:contact@torontohomeses.com"><i class="fas fa-envelope"></i> contact@torontohomes.com</a>
+          </div>
+          <div class="top-bar-right">
+            <span class="brokerage-tag">VTO Group</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="/" class="site-logo">
+            <div class="logo-mark">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="4" fill="#1a3a5c"/>
+                <path d="M6 22L16 10L26 22H21V28H11V22H6Z" fill="white" opacity="0.9"/>
+                <path d="M13 28V22H19V28" fill="#c9a96e"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-name">Toronto Homes</span>
+              <span class="logo-tagline">Real Estate Professional</span>
+            </div>
+          </a>
+
+          <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="/" class="nav-link {{#eq page 'home'}}active{{/eq}}">Home</a></li>
+            <li><a href="/listings" class="nav-link {{#eq page 'listings'}}active{{/eq}}">Buy a Home</a></li>
+            <li><a href="/featured" class="nav-link {{#eq page 'featured'}}active{{/eq}}">Featured</a></li>
+            <li><a href="/sell" class="nav-link {{#eq page 'sell'}}active{{/eq}}">Sell a Home</a></li>
+            <li><a href="/neighborhoods" class="nav-link {{#eq page 'neighborhoods'}}active{{/eq}}">Neighborhoods</a></li>
+            <li><a href="/about" class="nav-link {{#eq page 'about'}}active{{/eq}}">About</a></li>
+            <li><a href="/blog" class="nav-link {{#eq page 'blog'}}active{{/eq}}">Blog</a></li>
+            <li><a href="/testimonials" class="nav-link {{#eq page 'testimonials'}}active{{/eq}}">Testimonials</a></li>
+            <li><a href="/contact" class="nav-cta {{#eq page 'contact'}}active{{/eq}}">Let's Connect</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

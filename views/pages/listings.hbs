@@ -1,0 +1,126 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> Buy a Home</div>
+      <h1>Buy a Home</h1>
+      <p>Browse {{count}} available properties across Canada</p>
+    </div>
+  </div>
+</section>
+
+<section class="section listings-page">
+  <div class="container">
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+      <form id="listingsFilterForm" action="/listings" method="GET">
+        <div class="filters-grid">
+          <div class="filter-group filter-search">
+            <label>Location / Address</label>
+            <input type="text" name="search" value="{{filters.search}}" placeholder="City, neighborhood, or address..." class="filter-input" />
+          </div>
+          <div class="filter-group">
+            <label>Property Type</label>
+            <select name="type" class="filter-select">
+              <option value="">Any Type</option>
+              <option value="detached" {{#eq filters.type 'detached'}}selected{{/eq}}>Detached</option>
+              <option value="semi-detached" {{#eq filters.type 'semi-detached'}}selected{{/eq}}>Semi-Detached</option>
+              <option value="condo" {{#eq filters.type 'condo'}}selected{{/eq}}>Condo</option>
+              <option value="townhouse" {{#eq filters.type 'townhouse'}}selected{{/eq}}>Townhouse</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Min Beds</label>
+            <select name="beds" class="filter-select">
+              <option value="">Any</option>
+              <option value="1" {{#eq filters.beds '1'}}selected{{/eq}}>1+</option>
+              <option value="2" {{#eq filters.beds '2'}}selected{{/eq}}>2+</option>
+              <option value="3" {{#eq filters.beds '3'}}selected{{/eq}}>3+</option>
+              <option value="4" {{#eq filters.beds '4'}}selected{{/eq}}>4+</option>
+              <option value="5" {{#eq filters.beds '5'}}selected{{/eq}}>5+</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Min Price</label>
+            <select name="minPrice" class="filter-select">
+              <option value="">No Min</option>
+              <option value="200000" {{#eq filters.minPrice '200000'}}selected{{/eq}}>$200K</option>
+              <option value="400000" {{#eq filters.minPrice '400000'}}selected{{/eq}}>$400K</option>
+              <option value="600000" {{#eq filters.minPrice '600000'}}selected{{/eq}}>$600K</option>
+              <option value="800000" {{#eq filters.minPrice '800000'}}selected{{/eq}}>$800K</option>
+              <option value="1000000" {{#eq filters.minPrice '1000000'}}selected{{/eq}}>$1M</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Max Price</label>
+            <select name="maxPrice" class="filter-select">
+              <option value="">No Max</option>
+              <option value="400000" {{#eq filters.maxPrice '400000'}}selected{{/eq}}>$400K</option>
+              <option value="600000" {{#eq filters.maxPrice '600000'}}selected{{/eq}}>$600K</option>
+              <option value="800000" {{#eq filters.maxPrice '800000'}}selected{{/eq}}>$800K</option>
+              <option value="1000000" {{#eq filters.maxPrice '1000000'}}selected{{/eq}}>$1M</option>
+              <option value="2000000" {{#eq filters.maxPrice '2000000'}}selected{{/eq}}>$2M+</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Status</label>
+            <select name="status" class="filter-select">
+              <option value="A" {{#eq filters.status 'A'}}selected{{/eq}}>Active</option>
+              <option value="U" {{#eq filters.status 'U'}}selected{{/eq}}>Sold</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Sort By</label>
+            <select name="sort" class="filter-select">
+              <option value="createdOnDesc" {{#eq filters.sort 'createdOnDesc'}}selected{{/eq}}>Newest</option>
+              <option value="listPriceDesc" {{#eq filters.sort 'listPriceDesc'}}selected{{/eq}}>Price ↓</option>
+              <option value="listPriceAsc" {{#eq filters.sort 'listPriceAsc'}}selected{{/eq}}>Price ↑</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Search
+            </button>
+            <a href="/listings" class="btn btn-ghost">Clear</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Results Header -->
+    <div class="results-header">
+      <p class="results-count">Showing <strong>{{listings.length}}</strong> of <strong>{{count}}</strong> properties</p>
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="grid" title="Grid view"><i class="fas fa-th"></i></button>
+        <button class="view-btn" data-view="list" title="List view"><i class="fas fa-list"></i></button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="listings-grid" id="listingsGrid">
+      {{#each listings}}
+        {{> listing-card}}
+      {{else}}
+        <div class="no-listings col-span-3">
+          <i class="fas fa-search"></i>
+          <h3>No listings found</h3>
+          <p>Try adjusting your filters or <a href="/listings">view all listings</a>.</p>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Pagination -->
+    {{#if numPages}}
+    <div class="pagination">
+      {{#if (add currentPage -1)}}
+      <a href="/listings?page={{add currentPage -1}}" class="page-btn"><i class="fas fa-chevron-left"></i></a>
+      {{/if}}
+      <span class="page-info">Page {{currentPage}} of {{numPages}}</span>
+      {{#if numPages}}
+      <a href="/listings?page={{add currentPage 1}}" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+      {{/if}}
+    </div>
+    {{/if}}
+  </div>
+</section>

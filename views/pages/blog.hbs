@@ -1,0 +1,36 @@
+<section class="page-hero page-hero-sm">
+  <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?w=1400&q=80')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><a href="/">Home</a> <span>/</span> Blog</div>
+      <h1>Blog</h1>
+      <p>Real estate insights, tips, and market updates</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {{#each posts}}
+      <article class="blog-card">
+        <a href="/blog/{{slug}}" class="blog-card-image-wrap">
+          <div class="blog-card-image" style="background-image: url('{{image}}')">
+            <span class="blog-category">{{category}}</span>
+          </div>
+        </a>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span><i class="fas fa-calendar"></i> {{date}}</span>
+            <span><i class="fas fa-clock"></i> {{readTime}}</span>
+          </div>
+          <h3><a href="/blog/{{slug}}">{{title}}</a></h3>
+          <p>{{excerpt}}</p>
+          <a href="/blog/{{slug}}" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>
