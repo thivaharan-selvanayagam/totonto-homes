@@ -1,4 +1,4 @@
-# 🏠 Marco Esquivel Real Estate Website
+# 🏠 Toronto Homes Real Estate Website
 
 A full-featured luxury real estate website built with **Node.js + Express + Handlebars**, powered by the **Repliers API** for live property listings.
 
@@ -36,9 +36,9 @@ Edit the `.env` file (already pre-configured with your keys):
 
 ```env
 PORT=3000
-REPLIERS_API_KEY=taecHelmCkhO5q9QdKZYFmNcCh6YeQ
+REPLIERS_API_KEY=absefefef,ef,mfn,enf
 REPLIERS_BASE_URL=https://api.repliers.io
-GMAPS_KEY=bkvVOCVVfQhCfvnOXjLoZfNex30=
+GMAPS_KEY=cnncdncjdjdkndd
 ```
 
 ### 3. Run the server
