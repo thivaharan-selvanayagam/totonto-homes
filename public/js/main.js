@@ -40,43 +40,85 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ─── Hero search autocomplete ─────────────────────
-  const heroSearch = document.getElementById('heroSearch');
-  const heroAutocomplete = document.getElementById('heroAutocomplete');
-  let debounceTimer;
+const heroSearch = document.getElementById('heroSearch');
+const heroAutocomplete = document.getElementById('heroAutocomplete');
+let debounceTimer;
 
-  heroSearch?.addEventListener('input', (e) => {
-    clearTimeout(debounceTimer);
-    const q = e.target.value.trim();
-    if (q.length < 2) {
-      heroAutocomplete?.classList.remove('open');
-      return;
-    }
-    debounceTimer = setTimeout(async () => {
-      try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
-        const data = await res.json();
-        if (data.length === 0) {
-          heroAutocomplete?.classList.remove('open');
-          return;
-        }
-        heroAutocomplete.innerHTML = data.map(item => `
-          <div class="autocomplete-item" onclick="window.location='/listings/${item.mls}'">
-            <span class="autocomplete-address">${item.address}</span>
-            <span class="autocomplete-sub">${item.city || ''} · ${formatPrice(item.price)}</span>
-          </div>
-        `).join('');
-        heroAutocomplete?.classList.add('open');
-      } catch (err) {
-        console.error('Autocomplete error:', err);
+// Dynamic placeholder updater (Optional helper to make sure your input matches perfectly)
+if (heroSearch) {
+  heroSearch.setAttribute('placeholder', 'Search by Area, City, Postal Code or MLS® number...');
+}
+
+heroSearch?.addEventListener('input', (e) => {
+  clearTimeout(debounceTimer);
+  const q = e.target.value.trim();
+  
+  if (q.length < 2) {
+    heroAutocomplete?.classList.remove('open');
+    return;
+  }
+  
+  debounceTimer = setTimeout(async () => {
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      
+      if (!data || data.length === 0) {
+        heroAutocomplete?.classList.remove('open');
+        return;
       }
-    }, 300);
-  });
+      
+      heroAutocomplete.innerHTML = data.map(item => {
+        let matchIcon = 'fa-home';
+        let matchLabel = 'Property';
+        const queryLower = q.toLowerCase();
 
-  document.addEventListener('click', (e) => {
-    if (!heroSearch?.contains(e.target)) {
-      heroAutocomplete?.classList.remove('open');
+        // 1. Detect MLS® Number Match
+        // If the item's MLS matches the query closely, label it as an MLS match
+        if (item.mls.toLowerCase().includes(queryLower)) {
+          matchIcon = 'fa-fingerprint';
+          matchLabel = 'MLS® #';
+        } 
+        // 2. Detect City / Area Match
+        else if (item.city && item.city.toLowerCase().includes(queryLower)) {
+          matchIcon = 'fa-map-marker-alt';
+          matchLabel = 'City / Area';
+        }
+        
+        // Sold status tag from our previous update
+        const isSold = item.status === 'U' ? ' <span style="color: var(--gold); font-size: 0.75rem; font-weight: 600;">(Sold)</span>' : '';
+        
+        return `
+          <div class="autocomplete-item" onclick="window.location='/listings/${item.mls}'" style="display: flex; align-items: Left; justify-content: space-between; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="display: flex; flex-direction: column;">
+                <span class="autocomplete-address" style="font-weight: 500;">${item.address}${isSold}</span>
+                <span class="autocomplete-sub">${item.city || ''}</span>
+              </div>
+            </div>
+            <span style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--light-gray); color: var(--text-light); padding: 2px 8px; border-radius: 4px; font-weight: 600; font-family: 'Manrope', sans-serif;">
+              ${matchLabel}
+            </span>
+          </div>
+        `;
+      }).join('');
+      
+      heroAutocomplete?.classList.add('open');
+    } catch (err) {
+      console.error('Autocomplete error:', err);
     }
-  });
+  }, 300);
+});
+
+// Click outside handler (Fixed close bug)
+document.addEventListener('click', (e) => {
+  const clickedInsideSearch = heroSearch?.contains(e.target);
+  const clickedInsideResults = heroAutocomplete?.contains(e.target);
+  
+  if (!clickedInsideSearch && !clickedInsideResults) {
+    heroAutocomplete?.classList.remove('open');
+  }
+});
 
   // ─── Testimonial slider ───────────────────────────
   window.changeTestimonial = function(dir) {

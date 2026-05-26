@@ -191,10 +191,10 @@ app.get('/neighborhoods', (req, res) => {
     { name: 'Pickering', description: 'A beautiful coastal community offering scenic waterfront trails and quick, easy transit access to Toronto.', image: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=600&q=80', slug: 'pickering' },
     { name: 'Barrie', description: 'A scenic lakeside city serving as the perfect gateway to outdoor recreation and cottage country.', image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80', slug: 'barrie' },
   ];
-  res.render('pages/neighborhoods', { title: 'Neighborhoods | Marco Esquivel Real Estate', neighborhoods, page: 'neighborhoods' });
+  res.render('pages/neighborhoods', { title: 'Neighborhoods | Rajivan Varatharajah Real Estate', neighborhoods, page: 'neighborhoods' });
 });
 
-// NEIGHBORHOOD DETAIL
+// NEIGHBORHOOD DETAIL (UPDATED)
 app.get('/neighborhoods/:slug', async (req, res) => {
   const cityMap = {
     'toronto': 'Toronto', 
@@ -209,11 +209,27 @@ app.get('/neighborhoods/:slug', async (req, res) => {
     'pickering': 'Pickering', 
     'barrie': 'Barrie',
   };
-  const city = cityMap[req.params.slug] || req.params.slug;
-  const data = await fetchListings({ search: city, resultsPerPage: 6, status: 'A' });
+
+  const slug = req.params.slug.toLowerCase();
+  const isCity = cityMap.hasOwnProperty(slug);
+  const communityName = cityMap[slug] || req.params.slug;
+
+  // Build the API query parameters dynamically
+  const apiParams = { resultsPerPage: 6, status: 'A' };
+  
+  if (isCity) {
+    apiParams.city = communityName; // Exact city filter for Repliers API
+  } else {
+    apiParams.neighborhood = communityName; // Exact neighborhood filter for Repliers API
+  }
+
+  const data = await fetchListings(apiParams);
+
   res.render('pages/neighborhood-detail', {
-    title: `${city} Real Estate | Rajivan Varatharajah`,
-    city, listings: data.listings || [], page: 'neighborhoods',
+    title: `${communityName} Real Estate | Rajivan Varatharajah`,
+    city: communityName, 
+    listings: data.listings || [], 
+    page: 'neighborhoods',
   });
 });
 
