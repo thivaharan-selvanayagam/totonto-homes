@@ -8,9 +8,11 @@
   --navy: #1a3a5c;
   --navy-dark: #0f2540;
   --navy-light: #2a4f7a;
-  --gold: #c9a96e;
+  /* --gold: #c9a96e; */
+  --gold: #506dab;
   --gold-light: #d9bf8f;
-  --gold-dark: #a8843f;
+  /* --gold-dark: #a8843f; */
+  --gold-dark: #506dab;
   --white: #ffffff;
   --off-white: #f8f6f2;
   --light-gray: #f0ede8;
@@ -30,7 +32,7 @@
 /* ─── Reset ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+body { font-family: 'Roboto', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
@@ -39,12 +41,12 @@ input, select, textarea { font-family: inherit; }
 address { font-style: normal; }
 
 /* ─── Typography ─────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; line-height: 1.2; color: var(--navy); }
+h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; line-height: 1.2; color: var(--navy); }
 h1 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 700; }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
 h3 { font-size: 1.35rem; }
 h4 { font-size: 1.1rem; }
-em { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+em { font-family: 'Manrope', serif; font-style: italic; }
 p { line-height: 1.75; }
 
 /* ─── Layout ─────────────────────────────────────────── */
@@ -162,8 +164,8 @@ p { line-height: 1.75; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-  background: rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 50px;
+  text-transform: uppercase; color: var(--off-white); margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.08); padding: 8px 16px; border-radius: 50px;
   border: 1px solid rgba(201,169,110,0.3);
 }
 .hero-text h1 { color: var(--white); max-width: 700px; margin-bottom: 20px; }
