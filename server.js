@@ -107,8 +107,8 @@ app.get('/', async (req, res) => {
     fetchListings({ resultsPerPage: 3, status: 'U', sortBy: 'updatedOnDesc' }),
   ]);
   res.render('pages/home', {
-    title: 'Toronto Homes | Real Estate Services in Canada',
-    description: 'Discover Luxury Living with Toronto Homes, your trusted Real Estate Professional.',
+    title: 'Rajivan Varatharajah | Real Estate Services in Canada',
+    description: 'Discover Luxury Living with Rajivan Varatharajah, your trusted Real Estate Professional.',
     featuredListings: featuredData.listings || [],
     soldListings: soldData.listings || [],
     page: 'home',
@@ -128,7 +128,7 @@ app.get('/listings', async (req, res) => {
 
   const data = await fetchListings(params);
   res.render('pages/listings', {
-    title: 'Buy a Home |Toronto Homes Real Estate',
+    title: 'Buy a Home |Rajivan Varatharajah Real Estate',
     description: 'Browse available homes for sale across Toronto.',
     listings: data.listings || [],
     numPages: data.numPages || 0,
@@ -166,7 +166,7 @@ app.get('/featured', async (req, res) => {
 
   const data = await fetchListings(params);
   res.render('pages/featured', {
-    title: 'Featured Properties | Toronto Homes Real Estate',
+    title: 'Featured Properties | Rajivan Varatharajah Real Estate',
     listings: data.listings || [],
     numPages: data.numPages || 0,
     count: data.count || 0,
@@ -212,19 +212,19 @@ app.get('/neighborhoods/:slug', async (req, res) => {
   const city = cityMap[req.params.slug] || req.params.slug;
   const data = await fetchListings({ search: city, resultsPerPage: 6, status: 'A' });
   res.render('pages/neighborhood-detail', {
-    title: `${city} Real Estate | Toronto Homes`,
+    title: `${city} Real Estate | Rajivan Varatharajah`,
     city, listings: data.listings || [], page: 'neighborhoods',
   });
 });
 
 // SELL
-app.get('/sell', (req, res) => res.render('pages/sell', { title: 'Sell a Home | Toronto Homes', page: 'sell' }));
+app.get('/sell', (req, res) => res.render('pages/sell', { title: 'Sell a Home | Rajivan Varatharajah', page: 'sell' }));
 
 // ABOUT
-app.get('/about', (req, res) => res.render('pages/about', { title: 'About Toronto Homes | Real Estate Professional', page: 'about' }));
+app.get('/about', (req, res) => res.render('pages/about', { title: 'About Rajivan Varatharajah | Real Estate Professional', page: 'about' }));
 
 // CONTACT
-app.get('/contact', (req, res) => res.render('pages/contact', { title: "Let's Connect | Toronto Homes", page: 'contact' }));
+app.get('/contact', (req, res) => res.render('pages/contact', { title: "Let's Connect | Rajivan Varatharajah", page: 'contact' }));
 
 // BLOG
 app.get('/blog', (req, res) => {
@@ -236,11 +236,11 @@ app.get('/blog', (req, res) => {
     { title: 'Sacramento vs. San Diego: Where Should You Move?', slug: 'sacramento-vs-san-diego', date: 'March 5, 2025', category: 'Market Insights', excerpt: 'Comparing two of California\'s hottest real estate markets to help you decide where to plant roots.', image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80', readTime: '6 min read' },
     { title: "First-Time Buyer's Complete Guide to Auburn, CA", slug: 'first-time-buyers-guide-auburn', date: 'February 18, 2025', category: 'Buying Tips', excerpt: 'Everything you need to know about buying your first home in the Gold Rush foothills of Auburn.', image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80', readTime: '9 min read' },
   ];
-  res.render('pages/blog', { title: 'Blog | Toronto Homes Real Estate', posts, page: 'blog' });
+  res.render('pages/blog', { title: 'Blog | Rajivan Varatharajah Real Estate', posts, page: 'blog' });
 });
 
 // TESTIMONIALS
-app.get('/testimonials', (req, res) => res.render('pages/testimonials', { title: 'Client Testimonials | Toronto Homes', page: 'testimonials' }));
+app.get('/testimonials', (req, res) => res.render('pages/testimonials', { title: 'Client Testimonials | Rajivan Varatharajah', page: 'testimonials' }));
 
 
 // BLOG POST DETAIL
@@ -259,7 +259,7 @@ app.get('/blog/:slug', (req, res) => {
 
   const recentPosts = allPosts.filter(p => p.slug !== post.slug).slice(0, 3);
   res.render('pages/blog-post', {
-    title: post.title + ' | Toronto Homes Blog',
+    title: post.title + ' | Rajivan Varatharajah Blog',
     post,
     recentPosts,
     page: 'blog',
@@ -292,7 +292,7 @@ app.get('/api/listings', async (req, res) => {
 app.use((req, res) => res.status(404).render('pages/404', { title: '404 | Page Not Found', page: '404' }));
 
 app.listen(PORT, () => {
-  console.log(`\n🏠 Marco Esquivel Real Estate → http://localhost:${PORT}\n`);
+  console.log(`\nRajivan Varatharajah → http://localhost:${PORT}\n`);
   console.log('Pages:');
   console.log(`  Home        → http://localhost:${PORT}/`);
   console.log(`  Listings    → http://localhost:${PORT}/listings`);
