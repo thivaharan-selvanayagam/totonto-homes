@@ -115,10 +115,23 @@ app.get('/', async (req, res) => {
   });
 });
 
-// LISTINGS / BUY
+// LISTINGS / BUY (FIXED FOR EXACT NEIGHBORHOOD / CITY FILTERS)
 app.get('/listings', async (req, res) => {
-  const { page = 1, minPrice, maxPrice, beds, baths, type, search, status = 'A', sort = 'createdOnDesc' } = req.query;
+  const { 
+    page = 1, 
+    minPrice, 
+    maxPrice, 
+    beds, 
+    baths, 
+    type, 
+    search, 
+    community, // Intercept the community variable from homepage cards
+    status = 'A', 
+    sort = 'createdOnDesc' 
+  } = req.query;
+
   const params = { pageNum: parseInt(page), resultsPerPage: 9, status, sortBy: sort };
+  
   if (minPrice) params.minPrice = minPrice;
   if (maxPrice) params.maxPrice = maxPrice;
   if (beds) params.minBeds = beds;
@@ -126,9 +139,25 @@ app.get('/listings', async (req, res) => {
   if (type) params.type = type;
   if (search) params.search = search;
 
+  // Exact geographical mapping fix
+  if (community) {
+    const targetCommunity = community.trim();
+    const knownCities = [
+      'toronto', 'oakville', 'mississauga', 'burlington', 'markham', 
+      'vaughan', 'richmond hill', 'hamilton', 'brampton', 'pickering', 
+      'barrie', 'ottawa', 'london', 'windsor'
+    ];
+
+    if (knownCities.includes(targetCommunity.toLowerCase())) {
+      params.city = targetCommunity;
+    } else {
+      params.neighborhood = targetCommunity;
+    }
+  }
+
   const data = await fetchListings(params);
   res.render('pages/listings', {
-    title: 'Buy a Home |Rajivan Varatharajah Real Estate',
+    title: 'Buy a Home | Rajivan Varatharajah Real Estate',
     description: 'Browse available homes for sale across Toronto.',
     listings: data.listings || [],
     numPages: data.numPages || 0,
@@ -258,7 +287,6 @@ app.get('/blog', (req, res) => {
 // TESTIMONIALS
 app.get('/testimonials', (req, res) => res.render('pages/testimonials', { title: 'Client Testimonials | Rajivan Varatharajah', page: 'testimonials' }));
 
-
 // BLOG POST DETAIL
 app.get('/blog/:slug', (req, res) => {
   const allPosts = [
@@ -310,13 +338,13 @@ app.use((req, res) => res.status(404).render('pages/404', { title: '404 | Page N
 app.listen(PORT, () => {
   console.log(`\nRajivan Varatharajah → http://localhost:${PORT}\n`);
   console.log('Pages:');
-  console.log(`  Home        → http://localhost:${PORT}/`);
-  console.log(`  Listings    → http://localhost:${PORT}/listings`);
-  console.log(`  Featured    → http://localhost:${PORT}/featured`);
-  console.log(`  Sell        → http://localhost:${PORT}/sell`);
-  console.log(`  Neighborhoods → http://localhost:${PORT}/neighborhoods`);
-  console.log(`  About       → http://localhost:${PORT}/about`);
-  console.log(`  Blog        → http://localhost:${PORT}/blog`);
-  console.log(`  Testimonials → http://localhost:${PORT}/testimonials`);
-  console.log(`  Contact     → http://localhost:${PORT}/contact\n`);
+  console.log(`  Home            → http://localhost:${PORT}/`);
+  console.log(`  Listings        → http://localhost:${PORT}/listings`);
+  console.log(`  Featured        → http://localhost:${PORT}/featured`);
+  console.log(`  Sell            → http://localhost:${PORT}/sell`);
+  console.log(`  Neighborhoods   → http://localhost:${PORT}/neighborhoods`);
+  console.log(`  About           → http://localhost:${PORT}/about`);
+  console.log(`  Blog            → http://localhost:${PORT}/blog`);
+  console.log(`  Testimonials    → http://localhost:${PORT}/testimonials`);
+  console.log(`  Contact         → http://localhost:${PORT}/contact\n`);
 });
